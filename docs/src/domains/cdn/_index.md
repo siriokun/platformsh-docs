@@ -20,9 +20,9 @@ such as [Fastly](./fastly.md) or [Cloudflare](./cloudflare.md).
 ## DNS records
 
 To start routing client traffic through your CDN,
-some configuration on your DNS are required.
-Such as adding a `TXT` record for the `_acme-challenge` subdomain
-and several `CNAME` records to point to your CDN.
+some configuration on your DNS is required.
+Add a [custom domain](../../domains/steps/_index.md) to your production site to avoid [the `X-Robots-Tag` to be added to requests](../../environments/search-engine-visibility.md#how-its-done).
+You also need to add several `CNAME` records to point to your CDN and a `TXT` record for the [TLS ownership verification](../troubleshoot.md#ownership-verification).
 You can create these records for your domain names through your DNS provider.
 For more information, see you DNS and your CDN provider's official documentations.
 
@@ -71,38 +71,6 @@ To disable it, change your cache configuration for the routes behind a CDN to th
 
 When you use a CDN, you might want to prevent direct access to your Platform.sh server for security purposes.
 
-### HTTP basic authentication
-
-You can restrict access to your site's environments through HTTP basic authentication.
-To access a restricted environment, users need to enter credentials through their browser.
-By default, child environments inherit access settings configured on their parent environment.
-
-To enable HTTP basic authentication,
-follow these steps:
-
-1. Generate a strong password.
-2. Set up the authentication using [HTTP access control](../../environments/http-access-control.md#use-a-username-and-password).
-3. Share your credentials with your CDN provider.
-
-### Allow and deny IP addresses
-
-You can secure your site's environments by allowing and denying IP addresses.
-By default, child environments inherit the access settings configured on their parent environment.
-
-Note that allowing and denying IP addresses means you have to update your configuration
-when your CDN provider updates their IP addresses.
-
-To allow and deny IP addresses, follow these steps:
-
-1.  Set up your CDN.
-
-2.  Get your CDN provider's current IP ranges:
-    - [Fastly](https://docs.fastly.com/en/guides/accessing-fastlys-ip-ranges) 
-    - [CloudFlare](https://www.cloudflare.com/ips/)
-
-3.  To allow only these IPs on an environment,
-   set up [HTTP access control](../../environments/http-access-control.md#filter-ip-addresses).
-
 ### Client-authenticated TLS
 
 If your CDN provider supports it,
@@ -137,3 +105,35 @@ It allows your CDN to check that it's communicating with your Platform.sh server
 and vice versa.
 So in addition to the CA certificate supplied by your CDN provider,
 you need to [create your own TLS certificate](../../define-routes/https.md).
+
+### HTTP basic authentication
+
+You can restrict access to your site's environments through HTTP basic authentication.
+To access a restricted environment, users need to enter credentials through their browser.
+By default, child environments inherit access settings configured on their parent environment.
+
+To enable HTTP basic authentication,
+follow these steps:
+
+1. Generate a strong password.
+2. Set up the authentication using [HTTP access control](../../environments/http-access-control.md#use-a-username-and-password).
+3. Share your credentials with your CDN provider.
+
+### Allow and deny IP addresses
+
+You can secure your site's environments by allowing and denying IP addresses.
+By default, child environments inherit the access settings configured on their parent environment.
+
+Note that allowing and denying IP addresses means you have to update your configuration
+when your CDN provider updates their IP addresses.
+
+To allow and deny IP addresses, follow these steps:
+
+1.  Set up your CDN.
+
+2.  Get your CDN provider's current IP ranges:
+    - [Fastly](https://docs.fastly.com/en/guides/accessing-fastlys-ip-ranges) 
+    - [CloudFlare](https://www.cloudflare.com/ips/)
+
+3.  To allow only these IPs on an environment,
+   set up [HTTP access control](../../environments/http-access-control.md#filter-ip-addresses).

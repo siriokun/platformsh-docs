@@ -144,7 +144,8 @@ To configure your CDN and your domain name to point to your project:
 4. Configure your DNS to point at your CDN.
    The address or `CNAME` record to use varies by CDN provider.
    Refer to your provider's documentation or to the [CDN guide](../cdn/_index.md).
-5. Optional: If you have multiple domains you want to be served by the same app, add a `CNAME` record for each of them.
+5. Ensure that redirects and subdomains are set correctly for the [TLS certificate ownership verification](../troubleshoot.md#ownership-verification).
+6. Optional: If you have multiple domains you want to be served by the same app, add a `CNAME` record for each of them.
    That includes the `www` subdomain if you are using it in your [routes configuration](../../define-routes/_index.md).
 
 {{< /codetabs >}}
