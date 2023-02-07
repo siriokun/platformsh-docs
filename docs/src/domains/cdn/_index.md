@@ -21,8 +21,10 @@ such as [Fastly](./fastly.md) or [Cloudflare](./cloudflare.md).
 
 To start routing client traffic through your CDN,
 some configuration on your DNS is required.
-Add a [custom domain](../../domains/steps/_index.md) to your production site to avoid [the `X-Robots-Tag` to be added to requests](../../environments/search-engine-visibility.md#how-its-done).
-You also need to add several `CNAME` records to point to your CDN and a `TXT` record for the [TLS ownership verification](../troubleshoot.md#ownership-verification).
+Make sure you have a [custom domain](../steps/_index.md) set up,
+that your CDN points to your [project target](../../domains/steps/_index.md#2-get-the-target-for-your-project)
+to avoid [the `X-Robots-Tag` to be added to requests](../../environments/search-engine-visibility.md#how-its-done)
+and so that the [TLS ownership verification succeeds](../troubleshoot.md#ownership-verification).
 You can create these records for your domain names through your DNS provider.
 For more information, see you DNS and your CDN provider's official documentations.
 
