@@ -20,12 +20,15 @@ such as [Fastly](./fastly.md) or [Cloudflare](./cloudflare.md).
 ## DNS records
 
 To start routing client traffic through your CDN,
-some configuration on your DNS is required.
-Make sure you have a [custom domain](../steps/_index.md) set up,
-that your CDN points to your [project target](../../domains/steps/_index.md#2-get-the-target-for-your-project)
-to avoid [the `X-Robots-Tag` to be added to requests](../../environments/search-engine-visibility.md#how-its-done)
-and so that the [TLS ownership verification succeeds](../troubleshoot.md#ownership-verification).
-You can create these records for your domain names through your DNS provider.
+some configuration is required.
+Make sure that:
+
+1. You have a [custom domain](../steps/_index.md) set up.
+2. Your DNS zone points to your CDN and includes all needed records.
+   You can create these records for your domain names through your DNS provider.
+3. Your CDN points to your [project target](../../domains/steps/_index.md#2-get-the-target-for-your-project) to avoid [the `X-Robots-Tag` to be added to requests](../../environments/search-engine-visibility.md#how-its-done).
+4. The [TLS ownership verification can succeed](../troubleshoot.md#ownership-verification).
+
 For more information, see you DNS and your CDN provider's official documentations.
 
 Note that [`CNAME` records can't point to apex domains](../steps/dns.md),
