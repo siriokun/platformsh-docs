@@ -19,9 +19,9 @@ such as [Fastly](./fastly.md) or [Cloudflare](./cloudflare.md).
 
 ## Set up your CDN
 
-To start routing client traffic through your CDN you need to [set up a custom domain](../steps/_index.md).
+To start routing client traffic through your CDN, [set up a custom domain](../steps/_index.md).
 
-Note that, if you create `CNAME` records, they [can't point to apex domains](../steps/dns.md).
+Note that, if you create `CNAME` records when setting up your custom domain, these records [can't point to apex domains](../steps/dns.md).
 But most CDN providers offer workarounds.
 For example, Fastly offers [Anycast options](./fastly.md#3-handle-apex-domains)
 and Cloudflare offers [`CNAME` flattening](./cloudflare.md#3-handle-apex-domains).
