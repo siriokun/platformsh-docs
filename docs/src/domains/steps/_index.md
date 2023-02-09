@@ -153,7 +153,7 @@ To configure your CDN and your domain name to point to your project:
 
 Using a CDN with a custom domain prevents [the `X-Robots-Tag` from being added to requests](../../environments/search-engine-visibility.md#how-its-done).
 
-For more information, see how you can further [configure your CDN] (../cdn/_index.md).
+For more information, see how you can further [configure your CDN](../cdn/_index.md).
 
 {{< /codetabs >}}
 
