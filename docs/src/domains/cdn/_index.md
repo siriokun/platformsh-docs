@@ -5,7 +5,7 @@ weight: 3
 description: Improve performance for distributed end-users of your website with a content delivery network (CDN).
 layout: single
 ---
- 
+
 Using a CDN speeds up the delivery of your site's content to its users.
 The CDN deploys edge servers at many locations around the world.
 These edge servers behave like local caches to nearby users.
@@ -17,31 +17,12 @@ By default, Dedicated projects include a [Fastly CDN managed by Platform.sh](./m
 Self-service Grid plans don't include a CDN by default, but you can set up one at any time,
 such as [Fastly](./fastly.md) or [Cloudflare](./cloudflare.md).
 
-## DNS records
+## Set up your CDN
 
-To start routing client traffic through your CDN,
-To start routing client traffic through your CDN,
-[set up a custom domain](../steps/_index.md).
-Configure your [DNS provider settings](../../domains/steps/_index.md#3-configure-your-dns-provider) as follows:
-
-1.  Make sure your DNS zone points to your CDN and includes all needed records depending on your DNS provider.
-    You can create records for your domain names through your DNS provider.
-
-2.  Make sure your CDN points to your [project target](../../domains/steps/_index.md#2-get-the-target-for-your-project).
-   This prevents [the `X-Robots-Tag` from being added to requests](../../environments/search-engine-visibility.md#how-its-done)
-   and ensures the [TLS ownership verification can succeed](../troubleshoot.md#ownership-verification).
-
-For more information, see your DNS provider and your CDN provider's official documentation.
+To start routing client traffic through your CDN you need to [set up a custom domain](../steps/_index.md).
 
 Note that, if you create `CNAME` records, they [can't point to apex domains](../steps/dns.md).
 But most CDN providers offer workarounds.
-For example, Fastly offers [Anycast options](./fastly.md#3-handle-apex-domains)
-and Cloudflare offers [`CNAME` flattening](./cloudflare.md#3-handle-apex-domains).
-
-For more information, see you DNS and your CDN provider's official documentations.
-
-Note that [`CNAME` records can't point to apex domains](../steps/dns.md),
-but most CDN providers offer workarounds.
 For example, Fastly offers [Anycast options](./fastly.md#3-handle-apex-domains)
 and Cloudflare offers [`CNAME` flattening](./cloudflare.md#3-handle-apex-domains).
 
@@ -85,6 +66,38 @@ To disable it, change your cache configuration for the routes behind a CDN to th
 
 When you use a CDN, you might want to prevent direct access to your Platform.sh server for security purposes.
 
+### HTTP basic authentication
+
+You can restrict access to your site's environments through HTTP basic authentication.
+To access a restricted environment, users need to enter credentials through their browser.
+By default, child environments inherit access settings configured on their parent environment.
+
+To enable HTTP basic authentication,
+follow these steps:
+
+1. Generate a strong password.
+2. Set up the authentication using [HTTP access control](../../environments/http-access-control.md#use-a-username-and-password).
+3. Share your credentials with your CDN provider.
+
+### Allow and deny IP addresses
+
+You can secure your site's environments by allowing and denying IP addresses.
+By default, child environments inherit the access settings configured on their parent environment.
+
+Note that allowing and denying IP addresses means you have to update your configuration
+when your CDN provider updates their IP addresses.
+
+To allow and deny IP addresses, follow these steps:
+
+1.  Set up your CDN.
+
+2.  Get your CDN provider's current IP ranges:
+    - [Fastly](https://docs.fastly.com/en/guides/accessing-fastlys-ip-ranges) 
+    - [CloudFlare](https://www.cloudflare.com/ips/)
+
+3.  To allow only these IPs on an environment,
+   set up [HTTP access control](../../environments/http-access-control.md#filter-ip-addresses).
+
 ### Client-authenticated TLS
 
 If your CDN provider supports it,
@@ -119,35 +132,3 @@ It allows your CDN to check that it's communicating with your Platform.sh server
 and vice versa.
 So in addition to the CA certificate supplied by your CDN provider,
 you need to [create your own TLS certificate](../../define-routes/https.md).
-
-### HTTP basic authentication
-
-You can restrict access to your site's environments through HTTP basic authentication.
-To access a restricted environment, users need to enter credentials through their browser.
-By default, child environments inherit access settings configured on their parent environment.
-
-To enable HTTP basic authentication,
-follow these steps:
-
-1. Generate a strong password.
-2. Set up the authentication using [HTTP access control](../../environments/http-access-control.md#use-a-username-and-password).
-3. Share your credentials with your CDN provider.
-
-### Allow and deny IP addresses
-
-You can secure your site's environments by allowing and denying IP addresses.
-By default, child environments inherit the access settings configured on their parent environment.
-
-Note that allowing and denying IP addresses means you have to update your configuration
-when your CDN provider updates their IP addresses.
-
-To allow and deny IP addresses, follow these steps:
-
-1.  Set up your CDN.
-
-2.  Get your CDN provider's current IP ranges:
-    - [Fastly](https://docs.fastly.com/en/guides/accessing-fastlys-ip-ranges) 
-    - [CloudFlare](https://www.cloudflare.com/ips/)
-
-3.  To allow only these IPs on an environment,
-   set up [HTTP access control](../../environments/http-access-control.md#filter-ip-addresses).
