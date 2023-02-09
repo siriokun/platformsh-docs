@@ -20,14 +20,23 @@ such as [Fastly](./fastly.md) or [Cloudflare](./cloudflare.md).
 ## DNS records
 
 To start routing client traffic through your CDN,
-some configuration is required.
-Make sure that:
+To start routing client traffic through your CDN,
+[set up a custom domain](../steps/_index.md).
+Configure your [DNS provider settings](../../domains/steps/_index.md#3-configure-your-dns-provider) as follows:
 
-1. You have a [custom domain](../steps/_index.md) set up.
-2. Your DNS zone points to your CDN and includes all needed records.
-   You can create these records for your domain names through your DNS provider.
-3. Your CDN points to your [project target](../../domains/steps/_index.md#2-get-the-target-for-your-project) to avoid [the `X-Robots-Tag` to be added to requests](../../environments/search-engine-visibility.md#how-its-done).
-4. The [TLS ownership verification can succeed](../troubleshoot.md#ownership-verification).
+1.  Make sure your DNS zone points to your CDN and includes all needed records depending on your DNS provider.
+    You can create records for your domain names through your DNS provider.
+
+2.  Make sure your CDN points to your [project target](../../domains/steps/_index.md#2-get-the-target-for-your-project).
+   This prevents [the `X-Robots-Tag` from being added to requests](../../environments/search-engine-visibility.md#how-its-done)
+   and ensures the [TLS ownership verification can succeed](../troubleshoot.md#ownership-verification).
+
+For more information, see your DNS provider and your CDN provider's official documentation.
+
+Note that, if you create `CNAME` records, they [can't point to apex domains](../steps/dns.md).
+But most CDN providers offer workarounds.
+For example, Fastly offers [Anycast options](./fastly.md#3-handle-apex-domains)
+and Cloudflare offers [`CNAME` flattening](./cloudflare.md#3-handle-apex-domains).
 
 For more information, see you DNS and your CDN provider's official documentations.
 

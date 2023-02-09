@@ -46,7 +46,7 @@ platform environment:info --environment {{< variable "PRODUCTION_ENVIRONMENT_NAM
 ## How it's done
 
 When the **Hide from search engines** is activated,
-Search engines are turned away from environments by including a `X-Robots-Tag` header:
+search engines are turned away from environments by including a `X-Robots-Tag` header:
 
 ```txt
 X-Robots-Tag: noindex, nofollow
