@@ -146,7 +146,7 @@ To configure your CDN and your domain name to point to your project:
    Refer to the official documentation of your DNS provider and CDN provider.
 4. Check that redirects and subdomains are set correctly for the [TLS certificate ownership verification](../troubleshoot.md#ownership-verification).
 5. [Disable the router cache](../cdn/_index.md#disable-the-platformsh-router-cache).
-6. Optional: For increased security and prevent the CDN from being bypassed,
+6. Optional: For increased security and to prevent the CDN from being bypassed,
    you can force all traffic to [go through the CDN](../cdn/_index.md#prevent-direct-access-to-your-platformsh-server).
 7. Optional: If you have multiple domains you want to be served by the same app, add a `CNAME` record for each of them.
    That includes the `www` subdomain if you are using it in your [routes configuration](../../define-routes/_index.md).
