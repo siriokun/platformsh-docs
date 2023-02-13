@@ -53,8 +53,7 @@ X-Robots-Tag: noindex, nofollow
 ```
 
 That tells search engine indexers to not index these sites and not traverse links from these sites.
-This keeps non-Production sites out of search engine indexes.
-For non-Production sites it can't be turned off.
+This helps keep non-Production sites out of search engine indexes.
 
 ## Alternative method
 
