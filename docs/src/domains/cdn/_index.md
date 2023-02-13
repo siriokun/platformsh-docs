@@ -17,7 +17,7 @@ By default, Dedicated projects include a [Fastly CDN managed by Platform.sh](./m
 Self-service Grid plans don't include a CDN by default, but you can set up one at any time,
 such as [Fastly](./fastly.md) or [Cloudflare](./cloudflare.md).
 
-## About domains
+## DNS records
 
 To start routing client traffic through your CDN, [set up a custom domain](../steps/_index.md).
 
